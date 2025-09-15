@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { 
   Bars3Icon, 
   XMarkIcon,
@@ -11,165 +11,103 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [activeSubDropdown, setActiveSubDropdown] = useState(null);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
+    // On interior pages, keep navbar solid for readability
+    if (!isHome) {
+      setIsScrolled(true);
+      return;
+    }
+
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       setIsScrolled(scrollPosition > 50);
     };
-    
+
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [isHome]);
 
   const navItems = [
     {
       name: 'About us',
       href: '/about-us',
       dropdown: [
-        { name: 'Our School', href: '/our-school' },
-        { name: 'Mission & Vision', href: '/mission-vision' },
-        { 
-          name: 'Administration', 
-          href: '/administration',
-          subDropdown: [
-            { name: 'Principal\'s Message', href: '/principal-message' },
-            { name: 'Assistant Principal', href: '/assistant-principal' },
-            { name: 'Staff Directory', href: '/staff-directory' }
-          ]
-        },
-        { name: 'Our History', href: '/our-history' },
-        { name: 'School Tour', href: '/school-tour' }
+        { name: 'Our Mission & Vision', href: '/mission-vision' },
+        { name: "Principal's Message", href: '/principal-message' },
+        { name: 'Assistant Principal', href: '/assistant-principal' },
+        { name: 'Faculty & Staff', href: '/faculty-staff' },
+        { name: 'Policies & Procedures', href: '/policies-procedures' },
+        { name: 'Admissions', href: '/admissions' },
+        { name: 'Contact Us', href: '/contact-us' },
       ]
     },
     {
       name: 'Academics',
       href: '/academics',
       dropdown: [
-        { 
-          name: 'Curriculum', 
-          href: '/curriculum',
-          subDropdown: [
-            { name: 'Elementary (K-5)', href: '/curriculum/elementary' },
-            { name: 'Middle School (6-8)', href: '/curriculum/middle-school' }
-          ]
-        },
-        { name: 'Academic Programs', href: '/academic-programs' },
-        { name: 'Special Education', href: '/special-education' },
-        { name: 'English Language Learners', href: '/english-language-learners' },
-        { name: 'Gifted & Talented', href: '/gifted-talented' },
-        { 
-          name: 'Assessment & Testing', 
-          href: '/assessment-testing',
-          subDropdown: [
-            { name: 'State Tests', href: '/state-tests' },
-            { name: 'School Report Card', href: '/school-report-card' }
-          ]
-        }
+        { name: 'Curricula', href: '/curricula' },
+        { name: 'Testing Dates', href: '/testing-dates' },
+        { name: 'Grading Policy', href: '/grading-policy' },
+        { name: 'School Counseling', href: '/school-counseling' },
+        { name: '3-K Program', href: '/3k-program' },
+        { name: 'Early Childhood', href: '/early-childhood' },
       ]
     },
     {
       name: 'Students',
       href: '/students',
       dropdown: [
-        { name: 'Student Life', href: '/student-life' },
-        { 
-          name: 'Clubs & Activities', 
-          href: '/clubs-activities',
-          subDropdown: [
-            { name: 'Academic Clubs', href: '/academic-clubs' },
-            { name: 'Arts & Music', href: '/arts-music' },
-            { name: 'Sports & Athletics', href: '/sports-athletics' }
-          ]
-        },
-        { name: 'Student Handbook', href: '/student-handbook' },
-        { name: 'Code of Conduct', href: '/code-of-conduct' },
-        { 
-          name: 'Student Services', 
-          href: '/student-services',
-          subDropdown: [
-            { name: 'Guidance Counseling', href: '/guidance-counseling' },
-            { name: 'Health Services', href: '/health-services' },
-            { name: 'Social Work Services', href: '/social-work-services' }
-          ]
-        },
-        { name: 'Uniforms & Dress Code', href: '/uniforms-dress-code' }
+        { name: 'Bell Schedule', href: '/bell-schedule' },
+        { name: 'Food Services', href: '/food-services' },
+        { name: 'Cell Phone Policy', href: '/cell-phone-policy' },
+        { name: 'Behavioral Expectations', href: '/behavioral-expectations' },
+        { name: 'School Uniforms', href: '/school-uniforms' },
       ]
     },
     {
       name: 'Families',
       href: '/families',
       dropdown: [
-        { name: 'Parent Resources', href: '/parent-resources' },
-        { name: 'Family Engagement', href: '/family-engagement' },
-        { 
-          name: 'Parent Coordinator', 
-          href: '/parent-coordinator',
-          subDropdown: [
-            { name: 'Contact Information', href: '/parent-coordinator/contact' },
-            { name: 'Workshop Schedule', href: '/parent-coordinator/workshops' }
-          ]
-        },
-        { name: 'Parent-Teacher Association', href: '/pta' },
-        { name: 'School Leadership Team', href: '/school-leadership-team' },
-        { 
-          name: 'Communication', 
-          href: '/communication',
-          subDropdown: [
-            { name: 'Messages for Families', href: '/messages-families' },
-            { name: 'Newsletter', href: '/newsletter' },
-            { name: 'School Calendar', href: '/school-calendar' }
-          ]
-        },
-        { 
-          name: 'Resources & Support', 
-          href: '/resources-support',
-          subDropdown: [
-            { name: 'Food Services', href: '/food-services' },
-            { name: 'Transportation', href: '/transportation' },
-            { name: 'Before/After School Care', href: '/before-after-school-care' }
-          ]
-        }
+        { name: 'DOE Updates', href: '/doe-updates' },
+        { name: "Chancellor's Messages to Families", href: '/chancellor-messages' },
+        { name: 'Family Resources', href: '/family-resources' },
+        { name: 'Supply Lists', href: '/supply-lists' },
+        { name: 'Student Health', href: '/student-health' },
+        { name: 'School Calendar', href: '/school-calendar' },
+        { name: 'Parent Coordinator', href: '/parent-coordinator' },
+        { name: 'Parent Association', href: '/parent-association' },
+        { name: 'PA Executive Board', href: '/pa-executive-board' },
+        { name: 'Title I / CPAC', href: '/title1-cpac' },
+        { name: 'MYSchools NYC', href: '/myschools-nyc' },
       ]
     },
     {
       name: 'Partners',
       href: '/partners',
       dropdown: [
-        { name: 'Community Partners', href: '/community-partners' },
         { name: 'Edible Schoolyard NYC', href: '/edible-schoolyard-nyc' },
-        { name: 'Local Organizations', href: '/local-organizations' },
-        { name: 'Business Partnerships', href: '/business-partnerships' }
+        { name: 'Counseling In Schools', href: '/counseling-in-schools' },
+        { name: 'Union Settlement', href: '/union-settlement' },
+        { name: 'I Have a Dream', href: '/i-have-a-dream' },
+        { name: 'Boriken Health Clinic', href: '/boriken-health-clinic' },
+        { name: 'National Dance Institute', href: '/national-dance-institute' },
+        { name: 'ABC Crisis Team', href: '/abc-crisis-team' },
       ]
     },
     {
       name: 'Learning Resources',
       href: '/learning-resources',
       dropdown: [
-        { 
-          name: 'Digital Learning', 
-          href: '/digital-learning',
-          subDropdown: [
-            { name: 'Online Platforms', href: '/online-platforms' },
-            { name: 'Educational Apps', href: '/educational-apps' },
-            { name: 'Tech Support', href: '/tech-support' }
-          ]
-        },
-        { name: 'Library Resources', href: '/library-resources' },
-        { name: 'Homework Help', href: '/homework-help' },
-        { 
-          name: 'Summer Programs', 
-          href: '/summer-programs',
-          subDropdown: [
-            { name: 'Summer Rising', href: '/summer-rising' },
-            { name: 'Reading Programs', href: '/summer-reading-programs' }
-          ]
-        },
-        { name: 'NYC DOE Resources', href: '/nyc-doe-resources' }
+        { name: 'Learning Resources', href: '/learning-resources' },
+        { name: 'Google Classroom', href: '/google-classroom' },
       ]
-    }
+    },
   ];
 
   const handleDropdownToggle = (index) => {
