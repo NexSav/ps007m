@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import {
-  CalendarDaysIcon,
   DocumentTextIcon,
   UsersIcon,
   MagnifyingGlassIcon,
@@ -202,7 +201,7 @@ const FacultyStaff = () => {
                       <div className="px-4 py-3">Staff Member</div>
                       <div className="px-4 py-3">Position</div>
                     </div>
-                    <ul role="list" className="divide-y divide-gray-100">
+                    <ul className="divide-y divide-gray-100">
                       {section.items.map((item, idx) => (
                         <li key={idx} className="grid grid-cols-2 items-center">
                           <div className="px-4 py-3 text-gray-900">{item.name}</div>
