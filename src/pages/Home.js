@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import AnnouncementModal from '../components/AnnouncementModal';
 import { 
   ChatBubbleLeftRightIcon, 
   UserGroupIcon, 
@@ -27,6 +28,7 @@ const Home = () => {
 
   return (
     <main className="bg-white">
+      <AnnouncementModal />
       <Navbar />
 
       {/* Clean Hero Section - Inspired by the reference */}
@@ -48,7 +50,7 @@ const Home = () => {
               className="w-full h-full object-cover"
             />
           </video>
-          {/* Dark overlay for better text readability */}
+          {/* Subtle dark overlay for better text readability */}
           <div className="absolute inset-0 bg-black/25"></div>
         </div>
         
@@ -63,37 +65,37 @@ const Home = () => {
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-light text-white mb-6 leading-tight">
               PS/MS 007
             </h1>
-            <h2 className="text-2xl md:text-3xl text-white/90 font-normal mb-8 max-w-2xl">
+            <h2 className="text-2xl md:text-3xl text-white/90 font-normal mb-4 max-w-2xl">
               Samuel Stern School
             </h2>
+            <h3 className="text-2xl md:text-3xl text-white font-bold mb-8 max-w-2xl">
+              We Rise Together
+            </h3>
             <p className="text-lg md:text-xl text-white/80 mb-12 leading-relaxed max-w-2xl">
               Serving our Lower East Side community with high expectations and creating the greatest opportunities for our students since our founding.
             </p>
-            
-            <Link 
-              to="#about" 
-              className="group inline-flex items-center gap-3 bg-white/95 text-brand-primary hover:bg-white px-8 py-4 font-medium text-base transition-all duration-300 rounded-lg shadow-lg hover:shadow-xl"
-            >
-              <span className="text-xs opacity-70">Now</span>
-              <span>Discover Our Story</span>
-            </Link>
           </div>
         </div>
       </section>
 
       {/* Quick Access Widget Section - Cleaner Design */}
-      <section className="py-16 bg-white border-b border-gray-100">
+      <section className="py-16 bg-gradient-to-b from-white via-white to-brand-neutral/5 border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl font-light text-gray-900 mb-2">Quick Access</h2>
+            <div className="w-16 h-0.5 bg-brand-primary mx-auto"></div>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 sm:gap-8">
             {[
-              { icon: BookOpenIcon, title: "Learning Resources", href: "/learning-resources" },
-              { icon: ChatBubbleLeftRightIcon, title: "Messages for Families", href: "/messages" },
-              { icon: UserGroupIcon, title: "Family Resources", href: "/family-resources" },
-              { icon: DocumentTextIcon, title: "NYC DOE Updates", href: "/nyc-doe-updates" }
+              { icon: BookOpenIcon, title: "Learning Resources", href: "/learning-resources", color: "brand-secondary" },
+              { icon: ChatBubbleLeftRightIcon, title: "Messages for Families", href: "/messages", color: "brand-primary" },
+              { icon: UserGroupIcon, title: "Family Resources", href: "/family-resources", color: "brand-neutral" },
+              { icon: DocumentTextIcon, title: "NYC DOE Updates", href: "/nyc-doe-updates", color: "brand-secondary" },
+              { icon: CalendarDaysIcon, title: "School Calendar", href: "/school-calendar", color: "brand-primary" }
             ].map((item, index) => (
-              <a key={index} href={item.href} className="group flex flex-col items-center text-center rounded-2xl bg-white hover:bg-gray-50 shadow-sm hover:shadow-md hover:ring-1 ring-brand-primary/30 p-4 sm:p-5 transition-all duration-300 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-brand-primary/40">
-                <div className="w-16 h-16 mb-4 rounded-full flex items-center justify-center bg-brand-primary/10 ring-1 ring-brand-primary/20 group-hover:bg-brand-primary/15 group-hover:ring-brand-primary/30 transition-colors duration-300">
-                  <item.icon className="h-8 w-8 text-brand-primary" />
+              <a key={index} href={item.href} className="group flex flex-col items-center text-center rounded-2xl border border-gray-200 bg-white hover:bg-gray-50 shadow-sm hover:shadow-md hover:ring-1 ring-brand-primary/30 p-4 sm:p-5 transition-all duration-300 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-brand-primary/40">
+                <div className={`w-16 h-16 mb-4 rounded-full flex items-center justify-center bg-${item.color}/10 ring-1 ring-${item.color}/20 group-hover:bg-${item.color}/15 group-hover:ring-${item.color}/30 transition-colors duration-300`}>
+                  <item.icon className={`h-8 w-8 text-${item.color}`} />
                 </div>
                 <h3 className="text-sm font-medium text-gray-900 text-center leading-tight">
                   {item.title}
@@ -115,15 +117,15 @@ const Home = () => {
               </span>
               
               <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-8 leading-tight">
-                Our Educational Legacy.
+                Our Educational Legacy
               </h2>
               
               <p className="text-lg text-gray-600 leading-relaxed mb-10">
-                PS/MS 007 Samuel Stern School has been serving the diverse Lower East Side community with excellence in education. We foster academic achievement, creativity, and character development in our K-8 learning environment.
+                PS/MS 007 Samuel Stern School has been serving the diverse Lower East Side community with excellence in education. We foster academic achievement, creativity, and character development in our 3k to 8 learning environment.
               </p>
               
               <div className="flex gap-4">
-                <button className="bg-brand-primary hover:bg-[#e13f37] text-white px-6 py-3 text-sm font-medium transition-colors duration-300 rounded-lg shadow-sm">
+                <button className="bg-brand-primary hover:bg-[#b71c1c] text-white px-6 py-3 text-sm font-medium transition-colors duration-300 rounded-lg shadow-sm">
                   Learn More
                 </button>
                 <button className="border border-gray-300 hover:border-gray-400 text-gray-700 px-6 py-3 text-sm font-medium transition-colors duration-300 rounded-lg">
@@ -136,13 +138,13 @@ const Home = () => {
             <div className="lg:col-span-7">
               <div className="grid grid-cols-2 gap-6 h-[500px]">
                 <div className="col-span-2 overflow-hidden rounded-xl shadow-sm">
-                  <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-                    <span className="text-gray-600 font-medium">School Building</span>
+                  <div className="w-full h-full bg-[linear-gradient(90deg,rgba(214,48,49,0.08),rgba(27,67,50,0.08))] flex items-center justify-center">
+                    <span className="text-brand-neutral font-medium">School Building</span>
                   </div>
                 </div>
                 <div className="overflow-hidden rounded-xl shadow-sm">
-                  <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-                    <span className="text-gray-600 font-medium">Students</span>
+                  <div className="w-full h-full bg-[linear-gradient(90deg,rgba(145,145,145,0.06),rgba(214,48,49,0.06))] flex items-center justify-center">
+                    <span className="text-brand-neutral font-medium">Students</span>
                   </div>
                 </div>
                 <div className="bg-brand-primary flex items-center justify-center rounded-xl shadow-sm">
@@ -158,45 +160,50 @@ const Home = () => {
       </section>
 
       {/* Welcome Message Section - Clean Card Design */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-24 bg-gradient-to-b from-brand-neutral/5 to-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="mb-4">
+            <span className="inline-flex items-center text-xs font-medium px-3 py-1 rounded-full bg-brand-secondary/10 text-brand-secondary">
+              School Community
+            </span>
+          </div>
           <h2 className="text-4xl font-light text-gray-900 mb-12">
             Welcome to PS/MS 007 Samuel Stern School
           </h2>
           
           <div className="bg-white p-12 shadow-md rounded-2xl">
             <p className="text-lg text-gray-700 leading-relaxed mb-12">
-              On behalf of our entire school community, we are happy to welcome you! We look forward to working diligently with you to set forth high expectations for our students and to create the greatest of future and live opportunities for our students. Students have received high school achievements tied to high achievement.
+              On behalf of our entire school community, we are happy to welcome you! We look forward to working diligently with you to set forth high expectations for our students and to create the greatest of future and live opportunities for our students.
             </p>
             <div className="flex items-center justify-center mb-12">
-              <div className="w-12 h-px bg-gray-200"></div>
-              <div className="w-1 h-1 bg-gray-300 rounded-full mx-4"></div>
-              <div className="w-12 h-px bg-gray-200"></div>
+              <div className="w-12 h-px bg-brand-primary/30"></div>
+              <div className="w-1 h-1 bg-brand-secondary rounded-full mx-4"></div>
+              <div className="w-12 h-px bg-brand-primary/30"></div>
             </div>
             
             {/* Staff Information - Clean Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-              <div className="text-center bg-gray-50 rounded-xl p-6">
+              <div className="text-center bg-gradient-to-b from-brand-primary/5 to-white rounded-xl p-6 border border-brand-primary/20">
                 <h3 className="text-xl font-medium text-gray-900 mb-2">Michelle Martinez</h3>
                 <p className="text-brand-primary font-medium">Principal</p>
               </div>
-              <div className="text-center bg-gray-50 rounded-xl p-6">
+              <div className="text-center bg-gradient-to-b from-brand-secondary/5 to-white rounded-xl p-6 border border-brand-secondary/20">
                 <h3 className="text-xl font-medium text-gray-900 mb-2">Sandy George</h3>
-                <p className="text-brand-primary font-medium">Assistant Principal</p>
+                <p className="text-brand-secondary font-medium">Assistant Principal</p>
               </div>
-              <div className="text-center bg-gray-50 rounded-xl p-6">
+              <div className="text-center bg-gradient-to-b from-brand-neutral/5 to-white rounded-xl p-6 border border-brand-neutral/20">
                 <h3 className="text-xl font-medium text-gray-900 mb-2">Crystal Lamar</h3>
-                <p className="text-brand-primary font-medium">Parent Coordinator</p>
+                <p className="text-brand-neutral font-medium">Parent Coordinator</p>
               </div>
             </div>
             
             <div className="flex items-center justify-center space-x-8 text-gray-600">
               <div className="flex items-center space-x-2">
-                <PhoneIcon className="w-5 h-5" />
+                <PhoneIcon className="w-5 h-5 text-brand-primary" />
                 <span className="font-medium">(212) 960-5527</span>
               </div>
               <div className="flex items-center space-x-2">
-                <MapPinIcon className="w-5 h-5" />
+                <MapPinIcon className="w-5 h-5 text-brand-secondary" />
                 <span>140 Hester Street, NYC</span>
               </div>
             </div>
@@ -225,7 +232,7 @@ const Home = () => {
                   <p className="text-gray-600 mb-4">
                     <strong>Calendario escolar del Departamento de Educación de la Ciudad de Nueva York 2025-2026</strong>
                   </p>
-                  <button type="button" className="inline-flex items-center text-brand-primary hover:text-[#e13f37] font-medium" aria-label="View Calendar">
+                  <button type="button" className="inline-flex items-center text-brand-primary hover:text-[#b71c1c] font-medium" aria-label="View Calendar">
                     View Calendar →
                   </button>
                 </article>
@@ -292,7 +299,7 @@ const Home = () => {
                 <div className="bg-gray-100 p-6 mb-6 flex items-center justify-center h-32 rounded">
                   <PlayIcon className="h-12 w-12 text-gray-500" />
                 </div>
-                <button className="bg-brand-primary text-white font-medium px-6 py-3 w-full hover:bg-[#e13f37] transition-colors rounded-lg">Save for College</button>
+                <button className="bg-brand-primary text-white font-medium px-6 py-3 w-full hover:bg-[#b71c1c] transition-colors rounded-lg">Save for College</button>
                 <p className="text-sm text-gray-600 mt-4">This program is available to students in Grades 6-8</p>
               </div>
             </div>
@@ -322,7 +329,7 @@ const Home = () => {
               We are a nonprofit organization with a mission to support edible education for all New York City public school students. We believe that every student deserves access to healthy food and connects communities through hands-on cooking & gardening education, transforming children's relationship with food.
             </p>
             
-            <button className="bg-brand-secondary hover:bg-[#3c7801] text-white font-medium px-8 py-4 transition-colors duration-300 rounded-lg shadow-sm">
+            <button className="bg-brand-secondary hover:bg-[#0f2e1f] text-white font-medium px-8 py-4 transition-colors duration-300 rounded-lg shadow-sm">
               Learn More About Edible Schoolyard NYC
             </button>
           </div>
@@ -381,7 +388,7 @@ const Home = () => {
               </div>
               
               <div className="mt-8 text-center">
-                <button className="bg-brand-primary hover:bg-[#e13f37] text-white font-medium px-6 py-3 transition-colors duration-300 rounded-lg">
+                <button className="bg-brand-primary hover:bg-[#b71c1c] text-white font-medium px-6 py-3 transition-colors duration-300 rounded-lg">
                   View Full Calendar
                 </button>
               </div>
@@ -402,8 +409,8 @@ const Home = () => {
           
           <div className="flex justify-center space-x-6">
             {[
-              { color: "bg-brand-primary hover:bg-[#e13f37]" },
-              { color: "bg-brand-secondary hover:bg-[#3c7801]" },
+              { color: "bg-brand-primary hover:bg-[#b71c1c]" },
+              { color: "bg-brand-secondary hover:bg-[#0f2e1f]" },
               { color: "bg-brand-accent hover:bg-[#eac635]" }
             ].map((social, index) => (
               <button key={index} type="button" className={`w-12 h-12 ${social.color} flex items-center justify-center transition-colors duration-300 rounded-lg`} aria-label="Social link">

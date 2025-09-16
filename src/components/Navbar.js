@@ -122,22 +122,30 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
-        ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100' 
+        ? '' // Remove full-width white bg
         : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
-            <div className={`text-xl font-bold transition-colors duration-300 ${
-              isScrolled ? 'text-brand-primary' : 'text-white'
-            }`}>
-              PS/MS 007 <span className="font-light">Samuel Stern School</span>
-            </div>
+          <Link to="/" className="flex items-center -ml-8">
+            <img
+              src="/assets/images/logo.png"
+              alt="PS/MS 007 Samuel Stern School Logo"
+              className="h-28 w-auto object-contain drop-shadow-md mt-20"
+              style={{ maxWidth: '180px' }}
+            />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1">
+          {/* Desktop Navigation with animated white background on scroll */}
+          <div
+            className={`hidden lg:flex items-center space-x-1 px-8 py-2 border transition-all duration-500
+              ${isScrolled
+                ? 'bg-white/95 rounded-2xl shadow-lg border-gray-100'
+                : 'bg-transparent border-transparent shadow-none rounded-2xl'}
+            `}
+            style={{ backdropFilter: isScrolled ? 'blur(8px)' : 'none' }}
+          >
             {navItems.map((item, index) => (
               <div key={index} className="relative group">
                 {item.dropdown ? (
@@ -155,7 +163,8 @@ const Navbar = () => {
                     </button>
                     {activeDropdown === index && (
                       <div 
-                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-80 bg-white/95 backdrop-blur-md border border-gray-200 shadow-xl rounded-xl py-2 z-50 transition-all"
+                        className="absolute top-full left-0 mt-2 w-56 min-w-[12rem] bg-white/95 backdrop-blur-md border border-gray-200 shadow-xl rounded-xl py-2 z-50 transition-all duration-200 ease-in-out transform scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100"
+                        style={{ opacity: activeDropdown === index ? 1 : 0, transform: activeDropdown === index ? 'scale(1)' : 'scale(0.95)' }}
                         onMouseLeave={() => setActiveDropdown(null)}
                       >
                         {item.dropdown.map((dropdownItem, dropdownIndex) => (
@@ -163,22 +172,23 @@ const Navbar = () => {
                             {dropdownItem.subDropdown ? (
                               <div className="group/sub">
                                 <button
-                                  className="w-full relative px-6 py-3 text-base text-gray-800 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+                                  className="w-full relative px-5 py-2 text-base text-gray-800 hover:bg-gray-50 hover:text-brand-primary transition-all duration-150 rounded-lg font-medium border-l-2 border-transparent hover:border-brand-primary text-left"
                                   onMouseEnter={() => setActiveSubDropdown(`${index}-${dropdownIndex}`)}
                                 >
-                                  <span className="block text-center w-full">{dropdownItem.name}</span>
+                                  <span className="block w-full">{dropdownItem.name}</span>
                                   <ChevronDownIcon className="h-3 w-3 rotate-[-90deg] absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" />
                                 </button>
                                 {activeSubDropdown === `${index}-${dropdownIndex}` && (
                                   <div 
-                                    className="absolute top-0 left-full ml-2 w-64 bg-white/95 backdrop-blur-md border border-gray-200 shadow-xl rounded-xl py-2 z-50"
+                                    className="absolute top-0 left-full ml-2 w-48 min-w-[10rem] bg-white/95 backdrop-blur-md border border-gray-200 shadow-xl rounded-xl py-2 z-50 transition-all duration-200 ease-in-out transform scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100"
+                                    style={{ opacity: activeSubDropdown === `${index}-${dropdownIndex}` ? 1 : 0, transform: activeSubDropdown === `${index}-${dropdownIndex}` ? 'scale(1)' : 'scale(0.95)' }}
                                     onMouseLeave={() => setActiveSubDropdown(null)}
                                   >
                                     {dropdownItem.subDropdown.map((subItem, subIndex) => (
                                       <Link
                                         key={subIndex}
                                         to={subItem.href}
-                                        className="block px-5 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors rounded"
+                                        className="block px-5 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-primary transition-all duration-150 rounded-lg font-medium border-l-2 border-transparent hover:border-brand-primary"
                                       >
                                         {subItem.name}
                                       </Link>
@@ -189,7 +199,7 @@ const Navbar = () => {
                             ) : (
                               <Link
                                 to={dropdownItem.href}
-                                className="block px-6 py-3 text-base text-gray-800 hover:bg-gray-50 hover:text-gray-900 transition-colors text-center"
+                                className="block px-5 py-2 text-base text-gray-800 hover:bg-gray-50 hover:text-brand-primary transition-all duration-150 rounded-lg font-medium border-l-2 border-transparent hover:border-brand-primary text-left"
                               >
                                 {dropdownItem.name}
                               </Link>

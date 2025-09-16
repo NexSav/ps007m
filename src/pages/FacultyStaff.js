@@ -126,31 +126,41 @@ const FacultyStaff = () => {
       <Navbar />
 
       {/* Header */}
-      <section className="pt-24 pb-10 bg-gray-50 border-b border-gray-200">
+      <section className="pt-40 pb-10 bg-gradient-to-b from-[#1b4332] via-[#1b4332]/60 via-[#1b4332]/30 to-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumbs */}
           <nav aria-label="Breadcrumb" className="mb-3">
-            <ol className="flex items-center gap-2 text-xs text-gray-500">
-              <li><Link to="/" className="hover:text-gray-700">Home</Link></li>
-              <li aria-hidden="true">/</li>
-              <li><span className="text-gray-600">About Us</span></li>
-              <li aria-hidden="true">/</li>
-              <li className="text-gray-900">Faculty & Staff</li>
-            </ol>
+            <div className="inline-flex items-center gap-2 text-xs bg-white/90 backdrop-blur-sm px-3 py-2 rounded-full shadow-sm">
+              <ol className="flex items-center gap-2">
+                <li><Link to="/" className="text-gray-700 hover:text-brand-primary font-medium">Home</Link></li>
+                <li aria-hidden="true" className="text-gray-400">/</li>
+                <li><span className="text-gray-600 font-medium">About Us</span></li>
+                <li aria-hidden="true" className="text-gray-400">/</li>
+                <li className="text-gray-900 font-semibold">Faculty & Staff</li>
+              </ol>
+            </div>
           </nav>
 
           <div className="mb-4">
-            <span className="inline-flex items-center text-xs font-medium px-3 py-1 rounded-full bg-brand-primary/10 text-brand-primary">About Us</span>
+            <span className="inline-flex items-center text-xs font-medium px-4 py-2 rounded-full bg-white/95 backdrop-blur-sm text-brand-secondary shadow-lg border border-white/20">
+              <UsersIcon className="h-3 w-3 mr-1" />
+              About Us
+            </span>
           </div>
-          <h1 className="text-3xl md:text-4xl font-light text-gray-900">Faculty & Staff</h1>
-          <p className="mt-3 text-gray-600 max-w-3xl">Meet the dedicated team that supports our students and families.</p>
+          <h1 className="text-3xl md:text-4xl font-light text-white drop-shadow-lg" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.5)'}}>
+            Faculty & Staff
+          </h1>
+          <div className="w-16 h-0.5 bg-white/80 mt-3 mb-4 drop-shadow-sm"></div>
+          <p className="text-white/95 max-w-3xl drop-shadow-md font-medium" style={{textShadow: '1px 1px 3px rgba(0,0,0,0.4)'}}>
+            Meet the dedicated Hawks team that supports our students and families.
+          </p>
 
           {/* Anchor nav */}
           <div className="mt-6">
             <ul className="flex flex-wrap items-center gap-3 text-sm">
               {navAnchors.map((a) => (
                 <li key={a.id}>
-                  <a href={`#${a.id}`} className="inline-flex items-center px-3 py-1.5 rounded-full border border-gray-200 hover:border-brand-primary hover:text-brand-primary transition-colors">{a.label}</a>
+                  <a href={`#${a.id}`} className="inline-flex items-center px-4 py-2 rounded-full bg-white/90 backdrop-blur-sm border border-white/30 hover:bg-white hover:border-brand-primary text-gray-700 hover:text-brand-primary transition-all duration-300 shadow-md font-medium">{a.label}</a>
                 </li>
               ))}
             </ul>
@@ -165,8 +175,13 @@ const FacultyStaff = () => {
             {/* Main */}
             <div className="lg:col-span-8 space-y-10">
               {/* Banner placeholder */}
-              <div className="w-full h-44 md:h-56 lg:h-60 rounded-xl border border-gray-200 bg-gray-100 overflow-hidden flex items-center justify-center">
-                <span className="text-gray-500 text-sm">School artwork banner</span>
+              <div className="w-full h-44 md:h-56 lg:h-60 rounded-xl border border-brand-primary/20 bg-gradient-to-br from-brand-neutral/10 via-brand-primary/5 to-brand-secondary/5 overflow-hidden flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-brand-primary/10 flex items-center justify-center">
+                    <UsersIcon className="h-6 w-6 text-brand-primary" />
+                  </div>
+                  <span className="text-brand-neutral text-sm font-medium">Hawks Faculty & Staff</span>
+                </div>
               </div>
 
               {/* Search */}
@@ -186,7 +201,7 @@ const FacultyStaff = () => {
 
               {/* Year pill */}
               <div className="mt-2">
-                <span className="inline-flex items-center px-2.5 py-1 text-xs rounded-full bg-gray-100 text-gray-700">2024–2025 Roster</span>
+                <span className="inline-flex items-center px-2.5 py-1 text-xs rounded-full bg-brand-secondary/10 text-brand-secondary font-medium">2024–2025 Hawks Roster</span>
               </div>
 
               {/* Sections */}
@@ -194,9 +209,9 @@ const FacultyStaff = () => {
                 <div key={section.id} id={section.id} className="scroll-mt-24">
                   <div className="mb-4">
                     <h2 className="text-xl font-semibold text-gray-900">{section.title}</h2>
-                    <div className={`mt-2 h-1 w-12 ${section.id === 'mission' ? 'bg-brand-secondary' : 'bg-brand-primary/70'} rounded`}></div>
+                    <div className={`mt-2 h-1 w-12 ${section.id === 'administration' ? 'bg-brand-primary' : section.id === 'guidance' ? 'bg-brand-secondary' : 'bg-brand-neutral'} rounded`}></div>
                   </div>
-                  <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+                  <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                     <div className="grid grid-cols-2 text-xs font-semibold uppercase tracking-wide text-gray-500 border-b border-gray-200">
                       <div className="px-4 py-3">Staff Member</div>
                       <div className="px-4 py-3">Position</div>
@@ -221,7 +236,10 @@ const FacultyStaff = () => {
             <aside className="lg:col-span-4 space-y-6 lg:sticky lg:top-24 self-start">
               <div className="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden" role="navigation" aria-label="Shortcuts">
                 <div className="bg-brand-primary text-white px-5 py-4">
-                  <h3 className="text-lg font-semibold">Shortcuts</h3>
+                  <h3 className="text-lg font-semibold flex items-center">
+                    <UsersIcon className="h-5 w-5 mr-2" />
+                    Shortcuts
+                  </h3>
                 </div>
                 <div className="p-4">
                   <ul className="space-y-2">
@@ -238,8 +256,11 @@ const FacultyStaff = () => {
               </div>
 
               <div className="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
-                <div className="bg-gray-900 text-white px-5 py-4">
-                  <h3 className="text-lg font-semibold">Rosters</h3>
+                <div className="bg-brand-neutral text-white px-5 py-4">
+                  <h3 className="text-lg font-semibold flex items-center">
+                    <DocumentTextIcon className="h-5 w-5 mr-2" />
+                    Rosters
+                  </h3>
                 </div>
                 <div className="p-4">
                   <ul className="space-y-2">
@@ -265,10 +286,15 @@ const FacultyStaff = () => {
                 </div>
               </div>
 
-              <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-                <h4 className="text-base font-semibold text-gray-900 mb-2">Questions?</h4>
-                <p className="text-gray-600 text-sm mb-4">Contact our main office for assistance.</p>
-                <Link to="/contact-us" className="inline-flex items-center justify-center px-5 py-2.5 bg-brand-primary text-white rounded-lg hover:bg-[#e13f37] transition-colors">Contact Us</Link>
+              <div className="bg-gradient-to-b from-brand-primary/5 to-white border border-brand-primary/20 rounded-2xl p-6 shadow-sm">
+                <h4 className="text-base font-semibold text-gray-900 mb-2 flex items-center">
+                  <svg className="h-4 w-4 mr-2 text-brand-primary" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                  Questions?
+                </h4>
+                <p className="text-gray-600 text-sm mb-4">Contact our main office for assistance with Hawks staff information.</p>
+                <Link to="/contact-us" className="inline-flex items-center justify-center px-5 py-2.5 bg-brand-primary text-white rounded-lg hover:bg-[#b71c1c] transition-colors">Contact Us</Link>
               </div>
             </aside>
           </div>

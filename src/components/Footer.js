@@ -111,9 +111,9 @@ const Footer = () => {
               © {new Date().getFullYear()} PS/MS 007 Samuel Stern School • NYC Department of Education District 1
             </p>
             <div className="flex space-x-6">
-              <button type="button" className="text-white/80 hover:text-brand-accent text-sm transition-colors font-medium" aria-label="Privacy Policy">Privacy Policy</button>
-              <button type="button" className="text-white/80 hover:text-brand-accent text-sm transition-colors font-medium" aria-label="Terms of Use">Terms of Use</button>
-              <button type="button" className="text-white/80 hover:text-brand-accent text-sm transition-colors font-medium" aria-label="Accessibility">Accessibility</button>
+              <button type="button" className="text-white/80 hover:text-brand-primary text-sm transition-colors font-medium" aria-label="Privacy Policy">Privacy Policy</button>
+              <button type="button" className="text-white/80 hover:text-brand-secondary text-sm transition-colors font-medium" aria-label="Terms of Use">Terms of Use</button>
+              <button type="button" className="text-white/80 hover:text-brand-neutral text-sm transition-colors font-medium" aria-label="Accessibility">Accessibility</button>
             </div>
           </div>
         </div>
